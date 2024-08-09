@@ -5,12 +5,19 @@ import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { dataSourceConfig } from './database/dataSource';
 import { AuthenticationModule } from './modules/authentication/authentication.module';
 import { TaskModule } from './modules/task/task.module';
+import { SendEmailModule } from './modules/mail/mail.module';
+import { redisConfig } from './database/redisSource';
+import { BullModule } from '@nestjs/bull';
 
 @Module({
   imports: [
+    BullModule.forRoot({
+      redis: redisConfig(),
+    }),
     TypeOrmModule.forRoot(dataSourceConfig() as TypeOrmModuleOptions),
     AuthenticationModule,
     TaskModule,
+    SendEmailModule,
   ],
   controllers: [AppController],
   providers: [AppService],

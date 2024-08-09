@@ -1,13 +1,16 @@
 import {
   Column,
   Entity,
+  Index,
   JoinColumn,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Address } from './address.entity';
+import { TypeUser } from '../enum/typeUserEnum';
 
 @Entity()
+@Index(['email', 'username'], { unique: true })
 export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -30,4 +33,11 @@ export class User {
 
   @Column('simple-array')
   roles: string[];
+
+  @Column({
+    type: 'enum',
+    enum: TypeUser,
+    default: TypeUser.CLIENT,
+  })
+  type: TypeUser;
 }

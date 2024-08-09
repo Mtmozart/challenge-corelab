@@ -1,4 +1,4 @@
-import { EnvConfig } from 'src/config/cors.options';
+import { EnvConfig } from 'src/config/app.config';
 import { Address } from 'src/modules/authentication/entities/address.entity';
 import { User } from 'src/modules/authentication/entities/user.entity';
 import { DataSource, DataSourceOptions } from 'typeorm';
