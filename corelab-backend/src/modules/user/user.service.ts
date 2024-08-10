@@ -9,7 +9,7 @@ import { User } from './entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Address } from './entities/address.entity';
 import { Repository } from 'typeorm';
-import { CreateUserDto } from './dto/request/createUserDto';
+import { CreateUserClientDto } from './dto/request/createUserClientDto';
 import { genSalt, hash } from 'bcrypt';
 import { JwtPayload } from '../auth/payload/jwt.payload';
 import { JwtService } from '@nestjs/jwt';
@@ -17,6 +17,7 @@ import { SendEmailQueueService } from '../mail/job/send-email-queue/sendEmailQue
 import { Request } from 'express';
 import { getToken } from './utils/getToken';
 import { UpdateUserDto } from './dto/request/updateUserDto';
+import { CreateUserAdminDto } from './dto/request/createUserAdminDto';
 @Injectable()
 export class UserService {
   constructor(
@@ -39,7 +40,9 @@ export class UserService {
     return user;
   }
 
-  public async create(createUserDto: CreateUserDto): Promise<any> {
+  public async create(
+    createUserDto: CreateUserAdminDto | CreateUserClientDto,
+  ): Promise<any> {
     try {
       const existingUser = await this.usersRepository.findOne({
         where: [
@@ -51,6 +54,7 @@ export class UserService {
       if (existingUser) {
         throw new ConflictException('E-mail ou username já cadastrado');
       }
+
       const user = new User();
       Object.assign(user, createUserDto);
       const salt = await genSalt();
@@ -62,10 +66,10 @@ export class UserService {
       user.address = await this.addressRepository.save(address);
 
       user.roles = [];
-      if (user.type == 'admin') {
-        user.roles.push('admin');
-      } else if (user.type == 'client') {
+      if (createUserDto.type == 'client') {
         user.roles.push('client');
+      } else if (user.type == 'admin') {
+        user.roles.push('admin');
       } else {
         throw new BadRequestException('Tipo de usuário inválido');
       }

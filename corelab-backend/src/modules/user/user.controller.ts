@@ -10,20 +10,31 @@ import {
 } from '@nestjs/common';
 import { Request } from 'express';
 
-import { CreateUserDto } from './dto/request/createUserDto';
+import { CreateUserClientDto } from './dto/request/createUserClientDto';
 import { UserService } from './user.service';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiBearerAuth } from '@nestjs/swagger';
 import { User } from './entities/user.entity';
 import { UpdateUserDto } from './dto/request/updateUserDto';
+import { CreateUserAdminDto } from './dto/request/createUserAdminDto';
+import { RolesGuard } from '../auth/guards/roles.guard';
+import { Roles } from '../auth/decorators/roles.decorator';
 
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post()
-  async create(@Body() createUserDto: CreateUserDto): Promise<any> {
-    return this.userService.create(createUserDto);
+  async create(@Body() createUserClientDto: CreateUserClientDto): Promise<any> {
+    return this.userService.create(createUserClientDto);
+  }
+
+  @Post('create-admin')
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
+  @Roles('admin')
+  @ApiBearerAuth('JWT-auth')
+  async createAdmin(@Body() createUserAdmin: CreateUserAdminDto): Promise<any> {
+    return this.userService.create(createUserAdmin);
   }
 
   @UseGuards(AuthGuard('jwt'))

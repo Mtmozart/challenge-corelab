@@ -1,15 +1,9 @@
-import { ApiProperty } from '@nestjs/swagger';
-import {
-  IsArray,
-  IsEmail,
-  IsIn,
-  IsOptional,
-  IsString,
-  MinLength,
-} from 'class-validator';
+import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
+import { IsEmail, IsString, MinLength } from 'class-validator';
 import { CreateAddressDto } from './createAddressDto';
+import { TypeUser } from '../../enum/typeUserEnum';
 
-export class CreateUserDto {
+export class CreateUserClientDto {
   @ApiProperty()
   @IsString()
   name: string;
@@ -30,9 +24,6 @@ export class CreateUserDto {
   @ApiProperty({ type: () => CreateAddressDto })
   address: CreateAddressDto;
 
-  @ApiProperty()
-  @IsArray()
-  @IsOptional()
-  @IsIn(['client', 'admin'], { each: true })
-  roles: string[];
+  @ApiHideProperty()
+  type: TypeUser = TypeUser.CLIENT;
 }
