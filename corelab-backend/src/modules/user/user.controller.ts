@@ -13,13 +13,13 @@ import { Request } from 'express';
 import { CreateUserClientDto } from './dto/request/createUserClientDto';
 import { UserService } from './user.service';
 import { AuthGuard } from '@nestjs/passport';
-import { ApiBearerAuth } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { User } from './entities/user.entity';
 import { UpdateUserDto } from './dto/request/updateUserDto';
 import { CreateUserAdminDto } from './dto/request/createUserAdminDto';
 import { RolesGuard } from '../auth/guards/roles.guard';
 import { Roles } from '../auth/decorators/roles.decorator';
-
+@ApiTags('user')
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}

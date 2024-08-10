@@ -5,12 +5,14 @@ import {
   Entity,
   Index,
   JoinColumn,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 import { Address } from './address.entity';
 import { TypeUser } from '../enum/typeUserEnum';
+import { Task } from 'src/modules/task/entity/task.intity';
 
 @Entity()
 @Index(['email', 'username'], { unique: true })
@@ -47,6 +49,12 @@ export class User {
     default: TypeUser.CLIENT,
   })
   type: TypeUser;
+
+  @OneToMany(() => Task, (task) => task.user, {
+    cascade: ['remove'],
+    onDelete: 'CASCADE',
+  })
+  tasks: Task[];
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
