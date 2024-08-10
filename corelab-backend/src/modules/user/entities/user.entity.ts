@@ -1,10 +1,13 @@
 import {
   Column,
+  CreateDateColumn,
+  DeleteDateColumn,
   Entity,
   Index,
   JoinColumn,
   OneToOne,
   PrimaryGeneratedColumn,
+  UpdateDateColumn,
 } from 'typeorm';
 import { Address } from './address.entity';
 import { TypeUser } from '../enum/typeUserEnum';
@@ -27,7 +30,10 @@ export class User {
   @Column()
   password: string;
 
-  @OneToOne(() => Address, (address) => address.id, { eager: true })
+  @OneToOne(() => Address, (address) => address.id, {
+    eager: true,
+    cascade: true,
+  })
   @JoinColumn({ name: 'addressId' })
   address: Address;
 
@@ -40,4 +46,13 @@ export class User {
     default: TypeUser.CLIENT,
   })
   type: TypeUser;
+
+  @CreateDateColumn({ name: 'created_at' })
+  createdAt: Date;
+
+  @UpdateDateColumn({ name: 'updated_at' })
+  updatedAt?: Date;
+
+  @DeleteDateColumn({ name: 'deleted_at' })
+  deletedAt?: Date;
 }

@@ -14,7 +14,9 @@ import { genSalt, hash } from 'bcrypt';
 import { JwtPayload } from '../auth/payload/jwt.payload';
 import { JwtService } from '@nestjs/jwt';
 import { SendEmailQueueService } from '../mail/job/send-email-queue/sendEmailQueueService.service';
-
+import { Request } from 'express';
+import { getToken } from './utils/getToken';
+import { UpdateUserDto } from './dto/request/updateUserDto';
 @Injectable()
 export class UserService {
   constructor(
@@ -85,10 +87,12 @@ export class UserService {
     }
   }
 
-  public async profile(id: string): Promise<User> {
+  public async profile(req: Request): Promise<User> {
     try {
-      const user = await this.usersRepository.findOne({
-        where: { id: id },
+      const token = getToken(req);
+      const decoded = this.jwtService.verify(token);
+      const user = await this.usersRepository.findOneOrFail({
+        where: { id: decoded.sub },
       });
       if (!user) {
         throw new NotFoundException('Usuário não encontrado');
@@ -99,7 +103,66 @@ export class UserService {
     }
   }
 
-  public async update() {}
+  public async update(
+    req: Request,
+    updates: Partial<UpdateUserDto>,
+  ): Promise<User> {
+    const user = await this.profile(req);
 
-  public async delete() {}
+    if (updates.password) {
+      const salt = await genSalt();
+      updates.password = await hash(updates.password, salt);
+    }
+
+    if (updates.email && updates.email != user.email) {
+      await this.findByEmailValidation(updates.email);
+    }
+
+    if (updates.username && updates.username != user.username) {
+      await this.findByUsernameValidation(updates.username);
+    }
+
+    if (updates.address) {
+      const updatedAddress = await this.addressRepository.save({
+        ...user.address,
+        ...updates.address,
+      });
+      updates.address = updatedAddress;
+    }
+
+    const updatedUser = await this.usersRepository.save({
+      ...user,
+      ...updates,
+    });
+    return updatedUser;
+  }
+
+  public async delete(req: Request) {
+    try {
+      const user = await this.profile(req);
+      await this.usersRepository.remove(user);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  private async findByEmailValidation(email: string) {
+    const user = await this.usersRepository.findOne({
+      where: { email: email },
+    });
+
+    if (user) {
+      throw new ConflictException('E-mail já cadastrado.');
+    }
+  }
+
+  private async findByUsernameValidation(username: string) {
+    const user = await this.usersRepository.findOne({
+      where: { username: username },
+    });
+
+    if (user) {
+      throw new ConflictException('Username já cadastrado.');
+    }
+  }
 }
