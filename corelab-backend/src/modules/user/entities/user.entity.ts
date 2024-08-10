@@ -32,7 +32,8 @@ export class User {
 
   @OneToOne(() => Address, (address) => address.id, {
     eager: true,
-    cascade: true,
+    cascade: ['remove'],
+    onDelete: 'CASCADE',
   })
   @JoinColumn({ name: 'addressId' })
   address: Address;

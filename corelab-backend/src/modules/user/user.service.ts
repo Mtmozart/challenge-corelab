@@ -140,7 +140,9 @@ export class UserService {
   public async delete(req: Request) {
     try {
       const user = await this.profile(req);
+
       await this.usersRepository.remove(user);
+      await this.addressRepository.remove(user.address);
     } catch (error) {
       throw error;
     }
