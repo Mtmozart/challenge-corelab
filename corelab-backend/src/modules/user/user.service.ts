@@ -2,6 +2,7 @@ import {
   BadRequestException,
   ConflictException,
   Injectable,
+  NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
 import { User } from './entities/user.entity';
@@ -10,12 +11,12 @@ import { Address } from './entities/address.entity';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/request/createUserDto';
 import { genSalt, hash } from 'bcrypt';
-import { JwtPayload } from './payload/jwt.payload';
+import { JwtPayload } from '../auth/payload/jwt.payload';
 import { JwtService } from '@nestjs/jwt';
 import { SendEmailQueueService } from '../mail/job/send-email-queue/sendEmailQueueService.service';
 
 @Injectable()
-export class AuthenticationService {
+export class UserService {
   constructor(
     @InjectRepository(User)
     private readonly usersRepository: Repository<User>,
@@ -84,7 +85,19 @@ export class AuthenticationService {
     }
   }
 
-  public async profile() {}
+  public async profile(id: string): Promise<User> {
+    try {
+      const user = await this.usersRepository.findOne({
+        where: { id: id },
+      });
+      if (!user) {
+        throw new NotFoundException('Usuário não encontrado');
+      }
+      return user;
+    } catch (error) {
+      throw error;
+    }
+  }
 
   public async update() {}
 

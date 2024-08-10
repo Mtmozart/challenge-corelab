@@ -12,7 +12,16 @@ async function bootstrap() {
     .setTitle('Corelab - API')
     .setDescription('Full Stack Challenge - Corelab')
     .setVersion('1.0')
-    .addTag('swagger')
+    .addBearerAuth(
+      {
+        type: 'http',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+      },
+      'JWT-auth',
+    )
+    .addTag('user')
+    .addTag('auth')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);

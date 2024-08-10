@@ -3,11 +3,12 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { dataSourceConfig } from './database/dataSource';
-import { AuthenticationModule } from './modules/authentication/authentication.module';
 import { TaskModule } from './modules/task/task.module';
 import { SendEmailModule } from './modules/mail/mail.module';
 import { redisConfig } from './database/redisSource';
 import { BullModule } from '@nestjs/bull';
+import { UserModule } from './modules/user/user.module';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -15,8 +16,9 @@ import { BullModule } from '@nestjs/bull';
       redis: redisConfig(),
     }),
     TypeOrmModule.forRoot(dataSourceConfig() as TypeOrmModuleOptions),
-    AuthenticationModule,
+    UserModule,
     TaskModule,
+    AuthModule,
     SendEmailModule,
   ],
   controllers: [AppController],

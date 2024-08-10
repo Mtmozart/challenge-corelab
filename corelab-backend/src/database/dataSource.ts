@@ -1,6 +1,6 @@
 import { EnvConfig } from 'src/config/app.config';
-import { Address } from 'src/modules/authentication/entities/address.entity';
-import { User } from 'src/modules/authentication/entities/user.entity';
+import { Address } from 'src/modules/user/entities/address.entity';
+import { User } from 'src/modules/user/entities/user.entity';
 import { DataSource, DataSourceOptions } from 'typeorm';
 
 export const dataSourceConfig = (): DataSourceOptions => {
