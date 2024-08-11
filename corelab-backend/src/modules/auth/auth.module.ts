@@ -22,7 +22,7 @@ import { JwtStrategy } from './strategy/jwt.strategy';
     SendEmailModule,
   ],
   controllers: [AuthController],
-  providers: [UserService, AuthService, AuthService, JwtStrategy],
+  providers: [UserService, AuthService, JwtStrategy],
   exports: [PassportModule, JwtModule],
 })
 export class AuthModule {}

@@ -68,7 +68,7 @@ export class UserService {
       user.roles = [];
       if (createUserDto.type == 'client') {
         user.roles.push('client');
-      } else if (user.type == 'admin') {
+      } else if (createUserDto.type == 'admin') {
         user.roles.push('admin');
       } else {
         throw new BadRequestException('Tipo de usuário inválido');
@@ -147,6 +147,21 @@ export class UserService {
 
       await this.usersRepository.remove(user);
       await this.addressRepository.remove(user.address);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  public async findByID(id: string): Promise<User> {
+    try {
+      const user = await this.usersRepository.findOneOrFail({
+        where: { id: id },
+      });
+
+      if (!user) {
+        throw new NotFoundException('Usuário não encontrado');
+      }
+      return user;
     } catch (error) {
       throw error;
     }

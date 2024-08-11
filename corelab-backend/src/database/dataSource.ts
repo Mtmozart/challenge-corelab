@@ -1,5 +1,5 @@
 import { EnvConfig } from 'src/config/app.config';
-import { Task } from 'src/modules/task/entity/task.intity';
+import { Task } from 'src/modules/task/entity/task.entity';
 import { Address } from 'src/modules/user/entities/address.entity';
 import { User } from 'src/modules/user/entities/user.entity';
 import { DataSource, DataSourceOptions } from 'typeorm';

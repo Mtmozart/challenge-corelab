@@ -19,6 +19,7 @@ import { UpdateUserDto } from './dto/request/updateUserDto';
 import { CreateUserAdminDto } from './dto/request/createUserAdminDto';
 import { RolesGuard } from '../auth/guards/roles.guard';
 import { Roles } from '../auth/decorators/roles.decorator';
+import { TypeUser } from './enum/typeUserEnum';
 @ApiTags('user')
 @Controller('user')
 export class UserController {
@@ -26,6 +27,7 @@ export class UserController {
 
   @Post()
   async create(@Body() createUserClientDto: CreateUserClientDto): Promise<any> {
+    createUserClientDto.type = TypeUser.CLIENT;
     return this.userService.create(createUserClientDto);
   }
 
@@ -34,6 +36,7 @@ export class UserController {
   @Roles('admin')
   @ApiBearerAuth('JWT-auth')
   async createAdmin(@Body() createUserAdmin: CreateUserAdminDto): Promise<any> {
+    createUserAdmin.type = TypeUser.ADMIN;
     return this.userService.create(createUserAdmin);
   }
 
