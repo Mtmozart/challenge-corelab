@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 import { FaAlignJustify } from 'react-icons/fa6';
 import { FaTimes } from 'react-icons/fa';
 export function Header() {

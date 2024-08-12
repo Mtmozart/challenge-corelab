@@ -1,0 +1,82 @@
+@import '../styles/variables.scss'; 
+
+.main__container {
+  position: relative; 
+  width: 100%;
+  height: 600px;
+  background-image: url('../../public/capa.jpg');
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+.main__container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6); 
+  z-index: 1; 
+}
+
+.main__container > * {
+  position: relative;
+  z-index: 2; 
+}
+
+.main__container__content {
+  position: absolute; 
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%);
+  width: 50%; 
+  height: 100%; 
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+  flex-direction: column; 
+  padding: 40px;
+  gap: 25px;
+}
+
+.main__container__content h1 {
+  color: $primary-color;
+  font-size: $font-size-xlarge;
+  font-weight: 800; 
+}
+.main__container__content p {
+  color: $white;
+  font-size: $font-size-medium;
+  text-align: justify;
+}
+
+.main__container__content a {
+  border-radius: 25px;
+  background-color: $secondary-color;
+  color: $white;
+  padding: 5px 40px;
+  font-size: $font-size-medium;
+  cursor: pointer;
+}
+
+.main__container__content a:hover {
+  color: $text-color;
+  background-color: $primary-color;
+  border: 1px solid $white;
+  
+}
+
+@media (max-width: $tablet) {
+
+.main__container__content {  
+  width: 80%;
+  padding: 5px;
+}
+
+.main__container__content p {  
+  font-size: $font-size-small;
+}
+
+}
