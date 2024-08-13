@@ -1,0 +1,47 @@
+@import '../../styles/variables.scss'; 
+
+.carousel__content {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 0;
+  position: relative;
+}
+
+.carousel__content__card{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70%;
+  width: 70%; 
+}
+
+.carousel__content  button {
+  margin: 0;
+  padding: 0;
+  background-color: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  cursor: pointer; 
+
+  &:hover{
+    background-color: $primary-color;
+  }
+}
+@media (max-width: $tablet) {
+  .carousel__content{
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
+}

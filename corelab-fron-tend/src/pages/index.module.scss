@@ -52,22 +52,11 @@
   text-align: justify;
 }
 
-.main__container__content a {
-  border-radius: 25px;
-  background-color: $secondary-color;
-  color: $white;
-  padding: 5px 40px;
-  font-size: $font-size-medium;
-  cursor: pointer;
-}
-
 .main__container__content a:hover {
   color: $text-color;
   background-color: $primary-color;
-  border: 1px solid $white;
-  
+  border: 1px solid $white;  
 }
-
 .about__container{
   width: 100%;
   height: 400px;
@@ -78,7 +67,6 @@
   box-sizing: border-box;
   gap: 20px;
 }
-
 .about__container__content{
 height: 100%;
 max-width: 45%;
@@ -92,46 +80,67 @@ align-items: center;
   justify-content: center;
   align-items: center;
   gap: 20px;
-}
-.about__container__content h2{
+}.about__container__content h2{
   width: 100%;
   font-size: $font-size-large;
   font-weight: 600;
-}
-.about__container__content img{
+}.about__container__content img{
  width: 90%;
  height: 90%;
  border-radius: 20px;
 }
-
-.about__container__content a{
+.carrousel__container {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 500px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   text-align: center;
-  padding-top: 20px;
-  border-radius: 25px;
-  width: 50%;
-  background-color: $secondary-color;
-  color: $white;
-  padding: 5px 40px;
-  font-size: $font-size-medium;
-  cursor: pointer;
 }
 
-.about__container__content a:hover {
-  color: $text-color;
-  background-color: $primary-color;
-  border: 1px solid $white;
-  
+.carrousel__container h3 {
+ font-size: $font-size-large;
+ padding-top: 30px;
+ font-weight: 700;
 }
 //Tablet
 @media (max-width: $tablet) {
-
+//capa formatação
 .main__container__content {  
   width: 80%;
   padding: 5px;
 }
-
 .main__container__content p {  
   font-size: $font-size-small;
 }
 
+//about container
+ .about__container {
+    flex-direction: column;
+    gap: 0;
+    justify-content: center;
+    height: auto; 
+    text-align: center;
+  }
+
+  .about__container__content {
+    width: 100%; 
+    height: auto; 
+    max-width: 90%;
+    padding: 20px;
+  }
+  .about__container__content__text {
+    width: 100%;
+    height: auto; 
+    font-size: $font-size-small;
+  }
+
+//carousel container
+.carrousel__container {
+  height: 650px;
+}
 }

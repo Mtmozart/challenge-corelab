@@ -17,3 +17,9 @@
   border: 1px solid $white;
   
 }
+@media (max-width: $tablet) {
+  .button__component{
+  width: 90%;
+  font-size: $font-size-small;
+  }
+}

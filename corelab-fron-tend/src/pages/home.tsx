@@ -1,4 +1,6 @@
 import { Button } from '../components/button/Button';
+import { Carousel } from '../components/carrousel/Carousel';
+import { cardsData } from '../mocks/mockCarousel';
 import styles from './index.module.scss';
 
 export default function HomeScreen() {
@@ -32,6 +34,11 @@ export default function HomeScreen() {
         <div className={styles.about__container__content}>
           <img src="/sobre.png" alt="sobre_nos_tasks" />
         </div>
+      </section>
+
+      <section className={styles.carrousel__container}>
+        <h3>Título interessante e relevante</h3>
+        <Carousel {...cardsData} />
       </section>
     </>
   );

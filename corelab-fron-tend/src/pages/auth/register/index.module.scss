@@ -1,0 +1,17 @@
+@import '../../../styles/variables.scss'; 
+
+.main__container {
+ padding: 40px;
+ width: 100%;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ flex-direction: column;
+}
+
+.main__container__form{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}

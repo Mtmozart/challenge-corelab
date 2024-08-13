@@ -8,7 +8,7 @@ interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   suffix?: any;
 }
 
-export function Button({ className, loading, text, prefix, suffix, ...props }: IButtonProps) {
+export function Button({ loading, text, prefix, suffix, ...props }: IButtonProps) {
   return (
     <button {...props} className={styles.button__component}>
       {loading && <span className=""></span>}

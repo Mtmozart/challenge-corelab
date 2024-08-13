@@ -1,0 +1,26 @@
+@import '../../styles/variables.scss';
+
+.form_control {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.5em;
+ 
+}
+
+.form_control label{
+  margin-bottom: 0.3em;
+  font-weight: bold;
+  font-size: $font-size-small;
+}
+
+.form_control input {
+  padding: 0.4em;
+  border: 1px solid $secondary-color;
+  border-radius: 5px;
+  font-size: $font-size-small;
+}
+
+.form_control input::placeholder{
+  color: $text-color;
+  font-size: $font-size-small;
+}
