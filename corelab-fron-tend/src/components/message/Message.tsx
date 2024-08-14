@@ -14,7 +14,7 @@ export default function Message() {
       setType(type);
       setTimeout(() => {
         setVisibility(false);
-      }, 4000);
+      }, 3000);
     });
   }, []);
   if (!visibility) {

@@ -1,18 +1,30 @@
 import { createContext, ReactNode } from 'react';
 import useAuth from '../hooks/useAuth';
-import { IUserCreate } from '../interface/user/user';
+import { ILogin, IUserCreate } from '../interface/user/user';
 
-const UserContext = createContext<{ register: (user: IUserCreate) => Promise<any> } | null>(null);
+interface IUserContext {
+  register: (user: IUserCreate) => Promise<any>;
+  login: (credentials: ILogin) => Promise<any>;
+  logout: () => void;
+  authenticated: boolean;
+  update: (user: IUserCreate) => Promise<any>;
+  deleteUser: (token: string) => Promise<void>;
+}
+
+const UserContext = createContext<IUserContext | null>(null);
 
 type UserProviderProps = {
   children: ReactNode;
 };
 
 function UserProvider({ children }: UserProviderProps) {
-  const { register } = useAuth();
-  // const { cookie, acceptCookie } = useCookies(); // Remova ou ajuste conforme necessário
+  const { authenticated, register, login, logout, update, deleteUser } = useAuth();
 
-  return <UserContext.Provider value={{ register }}>{children}</UserContext.Provider>;
+  return (
+    <UserContext.Provider value={{ authenticated, register, login, logout, update, deleteUser }}>
+      {children}
+    </UserContext.Provider>
+  );
 }
 
 export { UserContext, UserProvider };

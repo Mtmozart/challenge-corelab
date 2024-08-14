@@ -1,9 +1,12 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import styles from './styles.module.scss';
 import { FaAlignJustify } from 'react-icons/fa6';
 import { FaTimes } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import { UserContext } from '../../context/UserContext';
 export function Header() {
   const [isVisible, setIsVisible] = useState(false);
+  const { authenticated = false, logout = () => {} } = useContext(UserContext) || {};
 
   const toggleIcon = () => {
     setIsVisible(!isVisible);
@@ -23,12 +26,27 @@ export function Header() {
           <li>
             <a href="">home</a>
           </li>
-          <li>
-            <a href="">login/logout</a>
-          </li>
-          <li>
-            <a href="">tasks</a>
-          </li>
+          {authenticated ? (
+            <>
+              <li>
+                <Link onClick={logout} to={''}>
+                  logout
+                </Link>
+              </li>
+              <li>
+                <Link to={'/profile'}>perfil</Link>
+              </li>
+              <li>
+                <Link to="/tasks">tasks</Link>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <Link to="/login">login</Link>
+              </li>
+            </>
+          )}
         </ul>
       </nav>
     </header>

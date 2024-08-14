@@ -7,11 +7,18 @@
  align-items: center;
  justify-content: center;
  flex-direction: column;
+ 
 }
-
+.main__container__content{
+  width: 60%;
+  background-color: $white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 25px;
+}
 .main__container__form{
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: row;
+ 
 }

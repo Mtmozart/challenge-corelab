@@ -14,12 +14,12 @@ import { CreateUserClientDto } from './dto/request/createUserClientDto';
 import { UserService } from './user.service';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { User } from './entities/user.entity';
 import { UpdateUserDto } from './dto/request/updateUserDto';
 import { CreateUserAdminDto } from './dto/request/createUserAdminDto';
 import { RolesGuard } from '../auth/guards/roles.guard';
 import { Roles } from '../auth/decorators/roles.decorator';
 import { TypeUser } from './enum/typeUserEnum';
+import { DefaultUserClientDto } from './dto/response/DefaultUserDto';
 @ApiTags('user')
 @Controller('user')
 export class UserController {
@@ -35,16 +35,20 @@ export class UserController {
   @UseGuards(AuthGuard('jwt'), RolesGuard)
   @Roles('admin')
   @ApiBearerAuth('JWT-auth')
-  async createAdmin(@Body() createUserAdmin: CreateUserAdminDto): Promise<any> {
+  async createAdmin(
+    @Body() createUserAdmin: CreateUserAdminDto,
+  ): Promise<DefaultUserClientDto> {
     createUserAdmin.type = TypeUser.ADMIN;
-    return this.userService.create(createUserAdmin);
+    return new DefaultUserClientDto(
+      await this.userService.create(createUserAdmin),
+    );
   }
 
   @UseGuards(AuthGuard('jwt'))
   @ApiBearerAuth('JWT-auth')
   @Get()
-  async profile(@Req() request: Request): Promise<User> {
-    return await this.userService.profile(request);
+  async profile(@Req() request: Request): Promise<DefaultUserClientDto> {
+    return new DefaultUserClientDto(await this.userService.profile(request));
   }
 
   @UseGuards(AuthGuard('jwt'))
@@ -53,8 +57,8 @@ export class UserController {
   async update(
     @Req() req: Request,
     @Body() update: UpdateUserDto,
-  ): Promise<User> {
-    return await this.userService.update(req, update);
+  ): Promise<DefaultUserClientDto> {
+    return new DefaultUserClientDto(await this.userService.update(req, update));
   }
 
   @UseGuards(AuthGuard('jwt'))

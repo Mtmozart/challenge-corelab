@@ -1,57 +1,54 @@
 import styles from './styles.module.scss';
 import { Input } from '../Input';
-import { ChangeEvent, FormEvent, useContext, useState } from 'react';
-import { IUserCreate } from '../../../interface/user/user';
+import { ChangeEvent, FormEvent, useContext, useEffect, useState } from 'react';
+import { IUser } from '../../../interface/user/user';
 import { UserContext } from '../../../context/UserContext';
 
-export function RegistrationForm() {
-  const [user, setUser] = useState<IUserCreate>({
-    name: '',
-    email: '',
-    username: '',
-    password: '',
-    address: {
-      cep: '',
-      street: '',
-      number: '',
-      neighborhood: '',
-      city: '',
-      state: '',
-      country: '',
-      complement: '',
-    },
+interface UpdateFormProps {
+  user: IUser;
+}
+
+export function UpdateForm({ user }: UpdateFormProps) {
+  const [updateUser, setUpdateUser] = useState<IUser>({
+    ...user,
   });
+
   const context = useContext(UserContext);
+
+  useEffect(() => {
+    setUpdateUser(user);
+  }, [user]);
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
 
-    if (name in user.address) {
-      setUser({
-        ...user,
-        address: {
-          ...user.address,
+    setUpdateUser((prevState) => {
+      if (name in prevState.address) {
+        return {
+          ...prevState,
+          address: {
+            ...prevState.address,
+            [name]: value,
+          },
+        };
+      } else {
+        return {
+          ...prevState,
           [name]: value,
-        },
-      });
-    } else {
-      setUser({
-        ...user,
-        [name]: value,
-      });
-    }
+        };
+      }
+    });
   }
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (context?.register) {
-      context.register(user);
+    if (context?.update) {
+      context.update(updateUser);
     }
   }
 
   return (
     <section className={styles.main__container}>
-      <h1>Registre-se</h1>
       <div className={styles.main__container__form}>
         <form onSubmit={handleSubmit}>
           <div className={styles.form_group}>
@@ -62,6 +59,7 @@ export function RegistrationForm() {
               placeholder="Nome completo"
               maxLength={50}
               handleOnChange={handleChange}
+              value={updateUser.name || ''}
             />
             <Input
               text="E-mail"
@@ -70,6 +68,7 @@ export function RegistrationForm() {
               placeholder="Digite o seu e-mail"
               maxLength={50}
               handleOnChange={handleChange}
+              value={updateUser.email || ''}
             />
             <Input
               text="Username"
@@ -78,6 +77,7 @@ export function RegistrationForm() {
               placeholder="Nome de usuário"
               maxLength={50}
               handleOnChange={handleChange}
+              value={updateUser.username || ''}
             />
           </div>
 
@@ -89,6 +89,7 @@ export function RegistrationForm() {
               placeholder="cep"
               maxLength={10}
               handleOnChange={handleChange}
+              value={updateUser.address?.cep || ''}
             />
             <Input
               text="Rua"
@@ -97,6 +98,7 @@ export function RegistrationForm() {
               placeholder="Rua"
               maxLength={50}
               handleOnChange={handleChange}
+              value={updateUser.address?.street || ''}
             />
             <Input
               text="Número"
@@ -105,6 +107,7 @@ export function RegistrationForm() {
               placeholder="Número"
               maxLength={10}
               handleOnChange={handleChange}
+              value={updateUser.address?.number || ''}
             />
             <Input
               text="Bairro"
@@ -113,6 +116,7 @@ export function RegistrationForm() {
               placeholder="Bairro"
               maxLength={30}
               handleOnChange={handleChange}
+              value={updateUser.address?.neighborhood || ''}
             />
             <Input
               text="Cidade"
@@ -121,6 +125,7 @@ export function RegistrationForm() {
               placeholder="Cidade"
               maxLength={30}
               handleOnChange={handleChange}
+              value={updateUser.address?.city || ''}
             />
             <Input
               text="Estado"
@@ -129,6 +134,7 @@ export function RegistrationForm() {
               placeholder="Estado"
               maxLength={20}
               handleOnChange={handleChange}
+              value={updateUser.address?.state || ''}
             />
             <Input
               text="País"
@@ -137,6 +143,7 @@ export function RegistrationForm() {
               placeholder="País"
               maxLength={20}
               handleOnChange={handleChange}
+              value={updateUser.address?.country || ''}
             />
             <Input
               text="Complemento"
@@ -145,6 +152,7 @@ export function RegistrationForm() {
               placeholder="Complemento"
               maxLength={50}
               handleOnChange={handleChange}
+              value={updateUser.address?.complement || ''}
             />
           </div>
 
@@ -156,9 +164,10 @@ export function RegistrationForm() {
               placeholder="Digite a sua senha"
               maxLength={15}
               handleOnChange={handleChange}
+              value={updateUser.password || ''}
             />
           </div>
-          <input className={styles.submit_button} type="submit" value="Cadastrar" />
+          <input className={styles.submit_button} type="submit" value="Atualizar" />
         </form>
       </div>
     </section>

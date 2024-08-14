@@ -4,7 +4,9 @@ import styles from './index.module.scss';
 export function RegisterScreen() {
   return (
     <section className={styles.main__container}>
-      <RegistrationForm />
+      <div className={styles.main__container__content}>
+        <RegistrationForm />
+      </div>
     </section>
   );
 }

@@ -16,3 +16,8 @@ export interface IUser {
   password: string;
   address: IAddress;
 }
+
+export interface ILogin {
+  username: string;
+  password: string;
+}
