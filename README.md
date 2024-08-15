@@ -86,7 +86,7 @@ O projeto `corelab-frontend` é uma aplicação web desenvolvida em React com Ty
 
 ### Descrição
 
-O projeto `corelab-backend` é uma API desenvolvida utilizando Node.js e o framework NestJS. Esta API é responsável por gerenciar tarefas em um banco de dados PostgreSQL, oferecendo funcionalidades para criar, ler, atualizar e excluir tarefas. A API também permite marcar tarefas como favoritas, gerenciamento de usuário e utiliza Redis como banco para fila com nest bull, devidamente documentado com Swagger, podendo ser consultado na rota comum/api.
+O projeto `corelab-backend` é uma API desenvolvida utilizando Node.js e o framework NestJS. Esta API é responsável por gerenciar tarefas em um banco de dados PostgreSQL, oferecendo funcionalidades para criar, ler, atualizar e excluir tarefas. A API também permite marcar tarefas como favoritas, gerenciamento de usuário e utiliza Redis como banco para fila com nest bull, devidamente documentado com Swagger, podendo ser consultado na rota comum/api, sendo as respostas dadas por Dto's e proteção com o class-validator, .
 
 ### Tecnologias e Ferramentas Utilizadas
 
