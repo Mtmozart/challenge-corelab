@@ -69,7 +69,7 @@ export default function useAuth() {
     let msgText = 'Atualização realizada com sucesso!';
     let msgType = 'success';
     try {
-      const update = await axiosInstance.put('user', user).then((response) => {
+      await axiosInstance.put('user', user).then((response) => {
         return response.data;
       });
     } catch (error: any) {
@@ -108,7 +108,7 @@ export default function useAuth() {
     }
     setMessage(msgText, msgType);
   }
-  async function authUser(data: Promise<String>) {
+  async function authUser(data: Promise<string>) {
     const token = await data;
     setAuthenticated(true);
     localStorage.setItem('token', JSON.stringify(token));

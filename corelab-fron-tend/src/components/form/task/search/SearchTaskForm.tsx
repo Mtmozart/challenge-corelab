@@ -86,22 +86,22 @@ export default function SearchTaskForm() {
             Favorite
           </label>
           <select value={status} onChange={(e) => setStatus(e.target.value)}>
-            <option value="">Select Status</option>
-            <option value="created">Created</option>
-            <option value="pending">Pending</option>
-            <option value="in_progress">In Progress</option>
-            <option value="completed">Completed</option>
-            <option value="cancelled">Cancelled</option>
+            <option value=""> Status</option>
+            <option value="created">Criada</option>
+            <option value="pending">Pendente</option>
+            <option value="in_progress">Em progresso</option>
+            <option value="completed">Completada</option>
+            <option value="cancelled">Cancelada</option>
           </select>
           <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}>
-            <option value="">Select Sort By</option>
-            <option value="favorite">Favorite</option>
+            <option value="">Ordenar por</option>
+            <option value="favorite">Favoritas</option>
             <option value="status">Status</option>
           </select>
           <select value={sortOrder} onChange={(e) => setSortOrder(e.target.value)}>
-            <option value="">Select Sort Order</option>
-            <option value="ASC">Ascending</option>
-            <option value="DESC">Descending</option>
+            <option value="">Ordenar por</option>
+            <option value="ASC">Crescente</option>
+            <option value="DESC">Decrescente</option>
           </select>
         </div>
       </form>
@@ -113,7 +113,7 @@ export default function SearchTaskForm() {
             </div>
           ))
         ) : (
-          <p>No tasks found</p>
+          <p>Sem tasks para encontrar</p>
         )}
       </div>
     </div>

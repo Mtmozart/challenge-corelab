@@ -15,18 +15,20 @@ const FavoriteButton: React.FC<FavoriteButtonProps> = ({ id, initialFavoriteStat
   const { setMessage } = useMessage();
 
   const handleClick = async () => {
+    let msgText = '';
+    let msgType = '';
     try {
       await axiosInstance.patch(`/task/favorite/${id}/`);
       setIsFavorite((prev) => !prev);
     } catch (error: any) {
       if (axios.isAxiosError(error)) {
-        let msgText = error.response?.data?.message || 'Unknown error';
-        let msgType = 'error';
+        msgText = error.response?.data?.message || 'Unknown error';
+        msgType = 'error';
         setMessage(msgText, msgType);
       } else {
-        let msgTextCommon = error.response?.data?.message;
-        let msgTypeCommon = 'error';
-        setMessage(msgTextCommon, msgTypeCommon);
+        msgText = error.response?.data?.message;
+        msgType = 'error';
+        setMessage(msgText, msgType);
       }
     }
   };

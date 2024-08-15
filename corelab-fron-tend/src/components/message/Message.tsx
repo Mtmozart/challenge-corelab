@@ -4,8 +4,8 @@ import bus from '../../utils/bus';
 
 export default function Message() {
   const [visibility, setVisibility] = useState(false);
-  let [message, setMessage] = useState('');
-  let [type, setType] = useState('');
+  const [message, setMessage] = useState('');
+  const [type, setType] = useState('');
 
   useEffect(() => {
     bus.addListener('message', ({ message, type }) => {

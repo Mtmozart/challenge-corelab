@@ -33,7 +33,7 @@ export default function UpdateTaskScreen() {
           setError('Erro ao buscar dados da tarefa.');
         });
     }
-  }, [id, token]);
+  }, [id, newToken]);
 
   if (!context?.authenticated) {
     return (

@@ -3,7 +3,6 @@ import { AiOutlineClose } from 'react-icons/ai';
 import styles from './favorite.module.scss';
 import axiosInstance from '../../../../config/api';
 import useMessage from '../../../../hooks/useMessage';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 interface RemoveTaskProps {
@@ -12,12 +11,12 @@ interface RemoveTaskProps {
 
 const RemoveTaskButton: React.FC<RemoveTaskProps> = ({ id }) => {
   const { setMessage } = useMessage();
-  const navigate = useNavigate();
   let msgText = 'Task deletada';
   let msgType = 'success';
   const handleClick = async () => {
     try {
       await axiosInstance.delete(`/task/${id}/`);
+      window.location.reload();
     } catch (error: any) {
       if (axios.isAxiosError(error)) {
         msgText = error.response?.data?.message || 'Unknown error';
@@ -27,7 +26,6 @@ const RemoveTaskButton: React.FC<RemoveTaskProps> = ({ id }) => {
         msgType = 'error';
       }
     } finally {
-      navigate('/tasks');
       setMessage(msgText, msgType);
     }
   };
