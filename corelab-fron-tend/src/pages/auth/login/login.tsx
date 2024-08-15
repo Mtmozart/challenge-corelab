@@ -9,6 +9,9 @@ export default function LoginScreen() {
         <span>
           Não tem conta ? <Link to={'/register'}>Registre-se</Link>
         </span>
+        <span>
+          <Link to={'/reset-password'}>Esqueceu a sua senha ?</Link>
+        </span>
       </div>
     </section>
   );

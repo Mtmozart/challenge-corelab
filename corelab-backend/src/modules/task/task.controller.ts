@@ -17,7 +17,6 @@ import { Roles } from '../auth/decorators/roles.decorator';
 import { CreateTaskDto } from './dto/createTaskDto';
 import { TaskService } from './task.service';
 import { UpdateTaskDto } from './dto/updateTaskDto';
-import { ChangeStatusDto } from './dto/changeStatusDto';
 import { SearchDto } from './dto/requestSearchDto';
 
 @ApiTags('task')
@@ -51,15 +50,6 @@ export class TaskController {
   @Roles('client')
   async delete(@Param('id') id: string) {
     return await this.taskService.delete(id);
-  }
-
-  @Patch('change-status/:id')
-  @Roles('client')
-  async updatesStatus(
-    @Param('id') id: string,
-    @Body() changeStatus: ChangeStatusDto,
-  ) {
-    return await this.taskService.changeStatus(id, changeStatus);
   }
 
   @Patch('favorite/:id')

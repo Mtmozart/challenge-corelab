@@ -6,8 +6,8 @@ import styles from './index.module.scss';
 export default function HomeScreen() {
   return (
     <>
-      <section className={styles.main__container}>
-        <section className={styles.main__container__content}>
+      <section className={styles.main__home__container}>
+        <section className={styles.main__home__content}>
           <h1>Gerencie suas atividades diárias</h1>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi commodi iste nemo nulla?
@@ -16,7 +16,6 @@ export default function HomeScreen() {
           </p>
           <Button text={'Saiba mais'} />
         </section>
-        <section></section>
       </section>
 
       <section className={styles.about__container}>

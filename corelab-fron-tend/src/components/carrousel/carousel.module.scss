@@ -1,4 +1,4 @@
-@import '../../styles/variables.scss'; 
+@import '../../styles/variables.scss';
 
 .carousel__content {
   box-sizing: border-box;
@@ -10,38 +10,92 @@
   align-items: center;
   justify-content: center;
   flex-direction: row;
-  gap: 0;
   position: relative;
 }
 
-.carousel__content__card{
+.carousel__content__card {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 70%;
-  width: 70%; 
+  width: 70%;
 }
 
-.carousel__content  button {
-  margin: 0;
-  padding: 0;
-  background-color: none;
+.carousel__content button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
   width: 50px;
   height: 50px;
-  border-radius: 50%;
-  display: flex; 
-  align-items: center; 
+  display: flex;
+  align-items: center;
   justify-content: center;
-  cursor: pointer; 
+  border-radius: 25px; /* Border radius adicionado */
+  transition: background-color 0.3s ease;
 
-  &:hover{
+  &:hover {
     background-color: $primary-color;
   }
 }
+
+.carousel__content button:first-of-type {
+  left: 10px;
+}
+
+.carousel__content button:last-of-type {
+  right: 10px;
+}
+
 @media (max-width: $tablet) {
-  .carousel__content{
-    padding: 0;
-    margin: 0;
+  .carousel__content {
     width: 100%;
+    padding: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .carousel__content__card {
+    height: auto;
+    width: 90%;
+    margin-bottom: 10px;
+  }
+
+  .carousel__content button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .carousel__content button:first-of-type {
+    left: 5px;
+  }
+
+  .carousel__content button:last-of-type {
+    right: 5px;
+  }
+}
+
+@media (max-width: $mobile) {
+  .carousel__content {
+    padding: 5px;
+  }
+
+  .carousel__content__card {
+    width: 100%;
+  }
+
+  .carousel__content button {
+    width: 35px;
+    height: 35px;
+  }
+
+  .carousel__content button:first-of-type {
+    left: 5px;
+  }
+
+  .carousel__content button:last-of-type {
+    right: 5px;
   }
 }

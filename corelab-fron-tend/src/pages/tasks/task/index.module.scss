@@ -1,0 +1,84 @@
+@import '../../../styles/variables.scss';
+
+.main__container__task {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $text-color;
+  box-sizing: border-box;
+}
+
+.main__container__task h1 {
+  margin-top: 20px;
+  font-weight: 700;
+  font-size: $font-size-xlarge;
+}
+
+.main__container__task__content {
+  box-sizing: border-box;
+  margin: 2em auto; 
+  height: auto;
+  width: 90%;
+  max-width: 800px;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.container__task__your__task {
+  width: 100%;
+  display: flex;
+  height: auto;
+  padding: 1em;
+  margin: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.main__container__task__acesso__negado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+  padding: 20px;
+}
+
+.container__task__your__task h2 {
+  font-weight: 700;
+  margin-bottom: 1em;
+}
+
+@media (max-width: $tablet) {
+  .main__container__task {
+    height: auto; 
+  }
+
+  .main__container__task__content {
+    width: 95%;
+    margin: 1em auto; 
+  }
+
+  .container__task__your__task {
+    width: 100%;
+    padding: 0.5em;
+  }
+}
+
+@media (max-width: $mobile) {
+  .main__container__task__content {
+    width: 100%;
+    padding: 1em;
+    margin: 1em auto; 
+  }
+
+  .container__task__your__task {
+    padding: 0.5em;
+  }
+}

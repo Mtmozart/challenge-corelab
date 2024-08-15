@@ -5,7 +5,6 @@ import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { UserService } from '../user/user.service';
 import { UpdateTaskDto } from './dto/updateTaskDto';
-import { ChangeStatusDto } from './dto/changeStatusDto';
 import { SearchDto } from './dto/requestSearchDto';
 
 @Injectable()
@@ -69,20 +68,6 @@ export class TaskService {
     try {
       await this.findOne(id);
       await this.taskRepository.delete(id);
-    } catch (error) {
-      throw error;
-    }
-  }
-
-  public async changeStatus(
-    id: string,
-    status: ChangeStatusDto,
-  ): Promise<boolean> {
-    try {
-      const task = await this.findOne(id);
-      task.status = status.status;
-      await this.taskRepository.save(task);
-      return true;
     } catch (error) {
       throw error;
     }

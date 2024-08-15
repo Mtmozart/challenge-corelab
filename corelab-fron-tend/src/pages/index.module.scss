@@ -1,65 +1,69 @@
-@import '../styles/variables.scss'; 
+@import '../styles/variables.scss';
 
-.main__container {
-  position: relative; 
+.main__home__container {
+  position: relative;
   width: 100%;
-  height: 600px;
+  height: auto; 
+  min-height: 600px; 
   background-image: url('../../public/capa.jpg');
   background-size: cover;
   background-position: center;
   overflow: hidden;
 }
 
-.main__container::before {
+.main__home__container::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.6); 
-  z-index: 1; 
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1;
 }
 
-.main__container > * {
+.main__home__container > * {
   position: relative;
-  z-index: 2; 
+  z-index: 2;
 }
 
-.main__container__content {
-  position: absolute; 
-  top: 50%; 
-  left: 50%; 
+.main__home__content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
-  width: 50%; 
-  height: 100%; 
-  display: flex;
-  align-items: center; 
-  justify-content: center; 
-  flex-direction: column; 
+  width: 80%;
+  max-width: 800px;
   padding: 40px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 25px;
 }
 
-.main__container__content h1 {
+.main__home__content h1 {
   color: $primary-color;
   font-size: $font-size-xlarge;
-  font-weight: 800; 
+  font-weight: 800;
 }
-.main__container__content p {
+
+.main__home__content p {
   color: $white;
   font-size: $font-size-medium;
   text-align: justify;
 }
 
-.main__container__content a:hover {
+.main__home__content a:hover {
   color: $text-color;
   background-color: $primary-color;
-  border: 1px solid $white;  
+  border: 1px solid $white;
 }
-.about__container{
+
+.about__container {
   width: 100%;
-  height: 400px;
+  height: auto; 
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -67,33 +71,40 @@
   box-sizing: border-box;
   gap: 20px;
 }
-.about__container__content{
-height: 100%;
-max-width: 45%;
-box-sizing: border-box;
-display: flex;
-align-items: center;
+
+.about__container__content {
+  height: auto;
+  max-width: 45%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
 }
+
 .about__container__content__text {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 20px;
-}.about__container__content h2{
+}
+
+.about__container__content h2 {
   width: 100%;
   font-size: $font-size-large;
   font-weight: 600;
-}.about__container__content img{
- width: 90%;
- height: 90%;
- border-radius: 20px;
 }
+
+.about__container__content img {
+  width: 90%;
+  height: auto; 
+  border-radius: 20px;
+}
+
 .carrousel__container {
-  padding: 0;
+  padding: 20px;
   margin: 0;
   width: 100%;
-  height: 500px;
+  height: auto; 
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -103,44 +114,42 @@ align-items: center;
 }
 
 .carrousel__container h3 {
- font-size: $font-size-large;
- padding-top: 30px;
- font-weight: 700;
-}
-//Tablet
-@media (max-width: $tablet) {
-//capa formatação
-.main__container__content {  
-  width: 80%;
-  padding: 5px;
-}
-.main__container__content p {  
-  font-size: $font-size-small;
+  font-size: $font-size-large;
+  padding-top: 30px;
+  font-weight: 700;
 }
 
-//about container
- .about__container {
+@media (max-width: $tablet) {
+  .main__home__content {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .main__home__content p {
+    font-size: $font-size-small;
+    text-align: center;
+  }
+
+  .about__container {
     flex-direction: column;
-    gap: 0;
+    gap: 10px;
     justify-content: center;
-    height: auto; 
+    height: auto;
     text-align: center;
   }
 
   .about__container__content {
-    width: 100%; 
-    height: auto; 
-    max-width: 90%;
-    padding: 20px;
+    width: 90%;
+    max-width: 100%;
+    padding: 10px;
   }
+
   .about__container__content__text {
     width: 100%;
-    height: auto; 
     font-size: $font-size-small;
   }
 
-//carousel container
-.carrousel__container {
-  height: 650px;
-}
+  .carrousel__container {
+    height: auto;
+  }
 }

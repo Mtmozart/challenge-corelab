@@ -8,12 +8,7 @@ interface ICardHomePrimaryProps {
 
 export function CardHome({ image, description, title }: ICardHomePrimaryProps) {
   return (
-    <div
-      className={styles.card__component}
-      style={{
-        backgroundImage: ` url(${image})`,
-      }}
-    >
+    <div className={styles.card__component} style={{ backgroundImage: `url(${image})` }}>
       <div className={styles.card__component__text}>
         <h4>{title}</h4>
         <p>{description}</p>

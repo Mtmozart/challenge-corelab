@@ -1,0 +1,93 @@
+@import '../../../styles/variables.scss';
+
+.main__container__task {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $text-color;
+}
+
+.main__container__task h1 {
+  margin-top: 20px;
+  font-weight: 700;
+  font-size: $font-size-xlarge;
+}
+
+.main__container__task__content {
+  margin: 0 auto;
+  padding: 0;  
+  width: 95%;    
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  background-color:  lighten($primary-color, 35%);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  flex-direction: column;
+  overflow: auto;
+}
+/*adicionado espaço*/
+.item {
+  flex: 1 1 calc(25% - 20px); 
+  box-sizing: border-box;
+  min-width: 200px; 
+}
+
+.main__container__task__to__create{
+  width: 100%;
+  display: block;
+  padding-left: 30px;
+}
+
+.main__container__task__to__create a{
+  border-radius: 20px;
+  background-color: $secondary-color;
+  padding: 10px 30px 10px 30px;
+  text-justify: center;
+}
+
+.main__container__task__to__create a:hover{  
+  background-color: $primary-color;
+  padding: 10px 30px 10px 30px;
+  text-justify: center;
+  color: $white;
+}
+
+.container__task__your__task{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+.container__task__your__task h2{
+    font-weight: 700;
+}
+
+/* index.module.scss */
+
+.main__container__task__acesso__negado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+}
+
+.main__container__task__acesso__negado h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.main__container__task__acesso__negado p {
+  font-size: 1.2rem;
+  margin: 0;
+}

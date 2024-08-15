@@ -3,5 +3,13 @@
 .main_container {
   width: 100%;
   background-color: $background-color;
-  min-height: 87vh;
+  min-height: calc(100vh - 80px);
+  overflow: auto;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.main_container > * {
+  flex: 1;
 }

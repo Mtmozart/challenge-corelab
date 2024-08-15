@@ -16,7 +16,7 @@ export function Header() {
     <header className={styles.header__container}>
       <nav className={styles.nav__container}>
         <section className={styles.nav__container__logo}>
-          <a href="/">TASKS</a>
+          <a href="/tasks">Tasks</a>
         </section>
         <section className={styles.nav__container__toggle} onClick={toggleIcon}>
           {isVisible ? <FaTimes /> : <FaAlignJustify />}
@@ -24,7 +24,7 @@ export function Header() {
 
         <ul className={`${styles.nav__container__list} ${isVisible ? styles.show : ''}`}>
           <li>
-            <a href="">home</a>
+            <Link to={'/'}>home</Link>
           </li>
           {authenticated ? (
             <>

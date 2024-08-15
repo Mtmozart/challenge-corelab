@@ -1,7 +1,7 @@
 import styles from './styles.module.scss';
 import { Input } from '../Input';
 import { ChangeEvent, FormEvent, useContext, useState } from 'react';
-import { ILogin, IUserCreate } from '../../../interface/user/user';
+import { ILogin } from '../../../interface/user/user';
 import { UserContext } from '../../../context/UserContext';
 
 export function LoginForm() {
@@ -12,7 +12,6 @@ export function LoginForm() {
   const userContext = useContext(UserContext);
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
-    const { name, value } = e.target;
     setUser({ ...user, [e.target.name]: e.target.value });
   }
 
@@ -36,7 +35,7 @@ export function LoginForm() {
               type="text"
               name="username"
               placeholder="Username"
-              maxLength={50}
+              maxLength={500}
               handleOnChange={handleChange}
             />
             <Input

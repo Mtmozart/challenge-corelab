@@ -60,3 +60,11 @@
 }
 
 
+@media (max-width: $mobile) {
+  .main__container{
+    padding: 5px;
+  } 
+  .main__container__content{
+  width: 100%;
+  }
+}
