@@ -61,10 +61,10 @@
 /* Consultas de mídia para tablets */
 @media (max-width: $tablet) {
   .nav__container__list {
-    z-index: 100;
+    z-index: 50;
     gap: 5px;
     position: fixed; 
-    top: 8vh;
+    top: 0vh;
     right: 0; 
     width: 35vw; 
     background-color: $text-color;
@@ -88,10 +88,12 @@
   }
 
   .nav__container__list a {
-    color: $primary-color;
+    color: $white;
   }
 
   .nav__container__toggle {
+    color: $white;
+    z-index: 100;
     display: flex;
     cursor: pointer;
   }
